@@ -1,0 +1,21 @@
+{
+    "name": "Consulta CEP",
+    "description": "Consulte e salve endereços de forma rápida e fácil.",
+    "version": "1.0",
+    "author": "Heitor Azevedo",
+    "manifest_version": 3,
+    "action": {
+        "default_popup": "index.html",
+
+        "default_icon": {
+            "16": "images/icons/icon-16.png",
+            "48": "images/icons/icon-48.png",
+            "128": "images/icons/icon-128.png"
+          }
+    },
+    "icons": {
+        "16": "images/icons/icon-16.png",
+        "48": "images/icons/icon-48.png",
+        "128": "images/icons/icon-128.png"
+    }
+}
