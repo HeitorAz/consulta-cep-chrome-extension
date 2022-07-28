@@ -1,14 +1,10 @@
 <script context="module" lang="ts">
+	import CepInput from "$lib/CepInput.svelte";
+
 	export const prerender = true;
 </script>
 
-
-<svelte:head>
-	<meta name="description" content="Svelte demo app" />
-</svelte:head>
-
-
-<h1>Home</h1>
+<CepInput />
 
 <style>
 

@@ -1,6 +1,45 @@
 /* Write your global styles here, in PostCSS syntax */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
 @tailwind base;
 
 @tailwind components;
 
 @tailwind utilities;
+
+@layer base {
+	html,
+	body {
+		font-family: 'Poppins', sans-serif;
+	}
+}
+
+@layer components {
+	.nav-button {
+		@apply bg-gradient-to-br from-primary-100 to-primary-400 transition-all rounded-full w-24 py-1 flex flex-col justify-center items-center drop-shadow-sm font-bold text-primary-900 text-xs;
+
+		&.inactive {
+			@apply from-transparent to-transparent;
+		}
+	}
+	.custom-scroll {
+		&::-webkit-scrollbar {
+			@apply w-2 pt-4;
+		}
+
+		/* Track */
+		&::-webkit-scrollbar-track {
+			@apply bg-primary-100 rounded;
+		}
+
+		/* Handle */
+		&::-webkit-scrollbar-thumb {
+			@apply bg-primary-400 rounded;
+		}
+
+		/* Handle on hover */
+		&::-webkit-scrollbar-thumb:hover {
+			@apply bg-primary-700;
+		}
+	}
+}

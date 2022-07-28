@@ -1,8 +1,15 @@
 import { sveltekit } from '@sveltejs/kit/vite';
+import path from 'path';
 
 /** @type {import('vite').UserConfig} */
 const config = {
-	plugins: [sveltekit()]
+	plugins: [sveltekit()],
+	resolve: {
+		alias: {
+			$lib: path.resolve('./src/lib'),
+			$providers: path.resolve('./src/providers')
+		}
+	}
 };
 
 export default config;
