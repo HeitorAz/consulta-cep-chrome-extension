@@ -1,5 +1,5 @@
-import { Toast, ToastType } from '$lib/models/toast';
-import { toast } from '../stores';
+import { Toast, ToastType } from '$models/toast';
+import { toast } from '$src/stores';
 
 export function showDangerNotification(message: string, duration: number = 3000) {
 	showNotification(message, ToastType.Danger, duration);

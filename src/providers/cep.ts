@@ -1,6 +1,7 @@
-import Address from '$lib/models/address';
-import { addresses, currentAddressCep, getSnapshot } from '../stores';
-import { showDangerNotification, showWarningNotification } from './notifications';
+import Address from '$models/address';
+import { showDangerNotification, showWarningNotification } from '$providers/notifications';
+import { copyToClipboard } from '$src/lib/utils/clipboard';
+import { addresses, currentAddressCep, getSnapshot } from '$src/stores';
 
 const API_URL = 'https://viacep.com.br/ws/';
 const API_RESPONSE_FORMAT = 'json';
@@ -41,6 +42,21 @@ export async function fetchCepInfo(
 export function toggleFavorite(address: Address): void {
 	address.isFavorite = !address.isFavorite;
 	updateStores(address);
+}
+
+/**
+ * Copies a list of addresses to the clipboard as a JSON string.
+ *
+ * @param {Address[]} addresses - The list of addresses to be copied.
+ */
+export async function copyListOfAddresses(addresses: Address[]): Promise<void> {
+	//copy the list of addresses to the clipboard as JSON
+	let addressesJSON = JSON.stringify(
+		addresses.map((address) => address.information),
+		null,
+		4
+	);
+	await copyToClipboard(addressesJSON, 'JSON copiado!', 'Erro ao copiar JSON!');
 }
 
 /**

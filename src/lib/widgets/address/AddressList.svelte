@@ -1,6 +1,6 @@
 <script lang="ts">
-import AddressListItem from "./AddressListItem.svelte";
-import type Address from "./models/address";
+    import type Address from "$models/address";
+    import AddressListItem from "$src/lib/widgets/address/AddressListItem.svelte";
 
     export let title: string;
     export let addressList: Address[] = [];

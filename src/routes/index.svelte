@@ -1,5 +1,5 @@
 <script context="module" lang="ts">
-	import CepInput from "$lib/CepInput.svelte";
+	import CepInput from "$widgets/address/CepInput.svelte";
 
 	export const prerender = true;
 </script>

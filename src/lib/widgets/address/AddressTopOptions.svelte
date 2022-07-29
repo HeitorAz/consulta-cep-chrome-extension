@@ -1,7 +1,8 @@
 <script lang="ts">
-import { afterNavigate,goto } from '$app/navigation';
-import FavoriteButton from './FavoriteButton.svelte';
-import type Address from './models/address';
+    import { afterNavigate,goto } from '$app/navigation';
+    import type Address from '$models/address';
+    import { showSuccessNotification } from '$src/providers/notifications';
+    import FavoriteButton from '$widgets/shared/FavoriteButton.svelte';
 
     export let address: Address;
 
@@ -9,6 +10,11 @@ import type Address from './models/address';
     afterNavigate((navigation) => {
         previousPage = navigation.from?.pathname || '/';
     })
+
+    function copyAddressJSON() {
+        navigator.clipboard.writeText(JSON.stringify(address.information, null, 4));
+        showSuccessNotification('JSON copiado!');
+    }
 
     function goBack() {
         goto(previousPage);
@@ -24,7 +30,7 @@ import type Address from './models/address';
       <span class="text-secondary-600 text-sm">Voltar</span>
     </button>
     <div class="flex flex-row justify-end items-center">
-        <button class="mr-2">
+        <button class="mr-2" on:click={copyAddressJSON}>
             <span class="material-icons-round text-2xl text-secondary-700">
                 ios_share
             </span>

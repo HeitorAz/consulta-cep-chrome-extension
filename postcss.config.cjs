@@ -1,14 +1,13 @@
-const tailwindcss = require('tailwindcss');
-const autoprefixer = require('autoprefixer');
+import tailwindcssNesting from '@tailwindcss/nesting';
+import autoprefixer from 'autoprefixer';
+import tailwindcss from 'tailwindcss';
 
-const config = {
+export const config = {
 	plugins: [
-		require('@tailwindcss/nesting'),
+		tailwindcssNesting(),
 		//Some plugins, like tailwindcss/nesting, need to run before Tailwind,
 		tailwindcss(),
 		//But others, like autoprefixer, need to run after,
-		autoprefixer
+		autoprefixer()
 	]
 };
-
-module.exports = config;

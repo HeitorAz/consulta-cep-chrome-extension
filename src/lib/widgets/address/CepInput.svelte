@@ -1,13 +1,10 @@
 <script lang="ts">
 import { goto } from "$app/navigation";
 import { fetchCepInfo } from "$providers/cep";
-import LoadingSpinner from "./LoadingSpinner.svelte";
-
+import LoadingSpinner from "$widgets/shared/LoadingSpinner.svelte";
 
     let cepInput: HTMLInputElement;
-
     let isFetchingAddress: boolean = false;
-
 
     async function onCepInputChange() {
         cepMask();
@@ -44,7 +41,7 @@ import LoadingSpinner from "./LoadingSpinner.svelte";
 
 <div class="h-full w-full bg-secondary-200 relative">
     <div class="bg-white rounded-t-2xl h-full flex justify-center items-center">
-        <input type="tel" bind:this={cepInput} on:input={onCepInputChange} placeholder="Digite um CEP..." class="outline-0 h-5/6 w-11/12 text-center text-xl font-semibold"
+        <input autocomplete="false" type="tel" bind:this={cepInput} on:input={onCepInputChange} placeholder="Digite um CEP..." class="outline-0 h-5/6 w-11/12 text-center text-xl font-semibold"
             maxlength="9">
     </div>
     {#if isFetchingAddress}

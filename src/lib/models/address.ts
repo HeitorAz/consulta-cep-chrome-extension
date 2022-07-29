@@ -1,4 +1,4 @@
-import AddressInfo from './addressInfo';
+import AddressInfo from '$models/addressInfo';
 
 export default class Address {
 	constructor(
@@ -25,5 +25,17 @@ export default class Address {
 
 	public toggleFavorite(): void {
 		this.isFavorite = !this.isFavorite;
+	}
+
+	public filter(query: string): boolean {
+		query = query.toLowerCase();
+		return (
+			this.information.cep.replace(/\D/g, '').includes(query) ||
+			this.information.cep.includes(query) ||
+			this.information.logradouro.toLowerCase().includes(query) ||
+			this.information.bairro.toLowerCase().includes(query) ||
+			this.information.cidade.toLowerCase().includes(query) ||
+			this.information.estado.toLowerCase().includes(query)
+		);
 	}
 }

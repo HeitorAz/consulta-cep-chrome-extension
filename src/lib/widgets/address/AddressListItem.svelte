@@ -1,11 +1,10 @@
 <script lang="ts">
 import { goto } from "$app/navigation";
-
+import type Address from "$models/address";
 import { fetchCepInfo } from "$providers/cep";
 import { showDangerNotification } from "$providers/notifications";
-import FavoriteButton from "./FavoriteButton.svelte";
+import FavoriteButton from "$widgets/shared/FavoriteButton.svelte";
 
-import type Address from "./models/address";
     export let address: Address;
     export let showDate: boolean;
 

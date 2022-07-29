@@ -11,10 +11,16 @@
 		"strict": true,
 		"baseUrl": ".",
 		"paths": {
-			"$lib": ["src/lib"],
+			"$src": ["src"],
+			"$src/*": ["src/*"],
+			"$lib":["src/lib"],
 			"$lib/*":["src/lib/*"],
 			"$providers": ["src/providers"],
 			"$providers/*": ["src/providers/*"],
+			"$models": ["src/lib/models"],
+			"$models/*": ["src/lib/models/*"],
+			"$widgets": ["src/lib/widgets"],
+			"$widgets/*": ["src/lib/widgets/*"],
 		}
 	},
 }

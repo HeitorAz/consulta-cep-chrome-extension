@@ -1,7 +1,7 @@
 <script lang="ts">
-import AddressInfoItem from "./AddressInfoItem.svelte";
-import AddressTopOptions from "./AddressTopOptions.svelte";
-import type Address from "./models/address";
+import type Address from "$models/address";
+import AddressInfoItem from "$src/lib/widgets/address/AddressInfoItem.svelte";
+import AddressTopOptions from "$src/lib/widgets/address/AddressTopOptions.svelte";
 
     export let address: Address;
 

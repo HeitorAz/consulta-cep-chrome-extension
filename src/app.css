@@ -16,10 +16,10 @@
 
 @layer components {
 	.nav-button {
-		@apply bg-gradient-to-br from-primary-100 to-primary-400 transition-all rounded-full w-24 py-1 flex flex-col justify-center items-center drop-shadow-sm font-bold text-primary-900 text-xs;
+		@apply bg-gradient-to-br from-transparent to-transparent transition-all rounded-full w-24 py-1 flex flex-col justify-center items-center drop-shadow-sm font-bold text-primary-900 text-xs;
 
-		&.inactive {
-			@apply from-transparent to-transparent;
+		&.active {
+			@apply from-primary-100 to-primary-400;
 		}
 	}
 	.custom-scroll {

@@ -1,11 +1,9 @@
 <script lang="ts">
-import BottomNavigation from '$lib/BottomNavigation.svelte';
-import Header from '$lib/Header.svelte';
-import type { Toast } from '$lib/models/toast';
-import ToastComponent from '$lib/ToastComponent.svelte';
-import { addresses,toast } from '../stores';
-
-
+	import type { Toast } from '$models/toast';
+	import { addresses,toast } from '$src/stores';
+	import BottomNavigation from '$widgets/shared/BottomNavigation.svelte';
+	import Header from '$widgets/shared/Header.svelte';
+	import ToastComponent from '$widgets/shared/ToastComponent.svelte';
 	import '../app.css';
 
 	let toastConfig: Toast | undefined;
@@ -20,8 +18,6 @@ import { addresses,toast } from '../stores';
 	addresses.subscribe((val) => {
 		console.log('addresses changed', val);
 	});
-
-
 </script>
 
 <header />

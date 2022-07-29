@@ -1,6 +1,6 @@
 <script lang="ts">
+import type { Toast } from "$models/toast";
 import { fly } from 'svelte/transition';
-import type { Toast } from "./models/toast";
 
 
     export let toast: Toast;

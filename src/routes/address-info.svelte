@@ -1,8 +1,8 @@
 <script lang="ts">
-    import AddressDisplay from "$lib/AddressDisplay.svelte";
-    import { addresses,currentAddressCep,getSnapshot } from "../stores";
+    import AddressDisplay from "$src/lib/widgets/address/AddressDisplay.svelte";
+    import { addresses,currentAddressCep } from "$src/stores";
 
-    $: currentAddress = $addresses[getSnapshot(currentAddressCep) || ''];
+    $: currentAddress = $addresses[$currentAddressCep || ''];
     
 </script>
     
