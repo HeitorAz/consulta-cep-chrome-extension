@@ -1,5 +1,6 @@
 <script lang="ts">
-import { showSuccessNotification } from "$providers/notifications";
+import { showNotification } from "$providers/notifications";
+import { ToastType } from "$src/lib/models/toast";
 
     export let label: string;
     export let value: string;
@@ -8,7 +9,7 @@ import { showSuccessNotification } from "$providers/notifications";
 
     function copyValue() {
         navigator.clipboard.writeText(value);
-        showSuccessNotification(`${label} copiado!`);
+        showNotification(`${label} copiado!`, {type: ToastType.Success});
     }
 
 </script>
@@ -20,7 +21,7 @@ import { showSuccessNotification } from "$providers/notifications";
         <div class="flex">
             <div class="flex flex-row justify-start items-center w-4/5">
                 {#if flag}
-                    <img src="images/flags/{flag}.png" width="30" class="mr-1" alt="{label}">
+                    <img src="/images/flags/{flag}.png" width="30" class="mr-1" alt="{label}">
                 {/if}
                 <span class="font-semibold ml-1 text-primary-900">{value}</span>
             </div>

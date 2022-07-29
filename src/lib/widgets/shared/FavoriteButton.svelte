@@ -1,6 +1,6 @@
 <script lang="ts">
 import type Address from "$models/address";
-import { toggleFavorite } from "$providers/cep";
+import { toggleFavorite } from "$src/providers/addressService";
 
     export let address: Address;
     let clazz: string = '';

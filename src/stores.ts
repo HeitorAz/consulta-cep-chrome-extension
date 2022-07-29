@@ -6,12 +6,9 @@ import { get, writable, type Writable } from 'svelte/store';
 export const addresses = createAddressStore();
 addresses.subscribe((val) => {
 	if (browser) {
-		console.log('Updating Local Storage');
 		localStorage.setItem('addresses', JSON.stringify(val));
 	}
 });
-
-export const currentAddressCep = writable<string | undefined>(undefined);
 
 export const toast = writable<Toast | undefined>(undefined);
 

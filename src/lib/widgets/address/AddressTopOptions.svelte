@@ -1,19 +1,20 @@
 <script lang="ts">
     import { afterNavigate,goto } from '$app/navigation';
     import type Address from '$models/address';
-    import { showSuccessNotification } from '$src/providers/notifications';
+    import { ToastType } from '$src/lib/models/toast';
+    import { showNotification } from '$src/providers/notifications';
     import FavoriteButton from '$widgets/shared/FavoriteButton.svelte';
 
     export let address: Address;
 
-    let previousPage : string;
+    let previousPage : string = '/';
     afterNavigate((navigation) => {
         previousPage = navigation.from?.pathname || '/';
     })
 
     function copyAddressJSON() {
         navigator.clipboard.writeText(JSON.stringify(address.information, null, 4));
-        showSuccessNotification('JSON copiado!');
+        showNotification('JSON copiado!', {type: ToastType.Success});
     }
 
     function goBack() {

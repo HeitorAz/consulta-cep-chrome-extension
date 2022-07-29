@@ -5,7 +5,7 @@ import AddressTopOptions from "$src/lib/widgets/address/AddressTopOptions.svelte
 
     export let address: Address;
 
-    $: addressInfo = address.information.toObject();
+    $: addressInfo = address.addressInfo;
 
 </script>
 

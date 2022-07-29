@@ -1,6 +1,7 @@
 <script lang="ts">
 import { goto } from "$app/navigation";
-import { fetchCepInfo } from "$providers/cep";
+
+
 import LoadingSpinner from "$widgets/shared/LoadingSpinner.svelte";
 
     let cepInput: HTMLInputElement;
@@ -26,15 +27,7 @@ import LoadingSpinner from "$widgets/shared/LoadingSpinner.svelte";
     }
 
     async function fetchAddress(cep: string) {
-        try {
-            isFetchingAddress = true;
-            await fetchCepInfo(cep);
-            await goto('address-info');
-        } catch(err) {
-            console.error(err);
-        } finally {
-            isFetchingAddress = false;
-        }
+        await goto(`address-info/${cep}`);
     }
     
 </script>

@@ -9,13 +9,15 @@
 
         "default_icon": {
             "16": "images/icons/icon-16.png",
-            "48": "images/icons/icon-48.png",
+            "32": "images/icons/icon-32.png",
+            "64": "images/icons/icon-64.png",
             "128": "images/icons/icon-128.png"
           }
     },
     "icons": {
         "16": "images/icons/icon-16.png",
-        "48": "images/icons/icon-48.png",
+        "32": "images/icons/icon-32.png",
+        "64": "images/icons/icon-64.png",
         "128": "images/icons/icon-128.png"
     }
 }

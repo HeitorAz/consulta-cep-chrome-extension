@@ -1,8 +1,7 @@
 <script lang="ts">
 import { goto } from "$app/navigation";
+
 import type Address from "$models/address";
-import { fetchCepInfo } from "$providers/cep";
-import { showDangerNotification } from "$providers/notifications";
 import FavoriteButton from "$widgets/shared/FavoriteButton.svelte";
 
     export let address: Address;
@@ -11,12 +10,7 @@ import FavoriteButton from "$widgets/shared/FavoriteButton.svelte";
     $: lastUsed = `${address.lastUsed.toLocaleDateString('PT-BR')} ${address.lastUsed.toLocaleTimeString('PT-BR', {hour: '2-digit', minute:'2-digit'})}`
 
     async function selectAddress() {
-        try {
-            await fetchCepInfo(address.information.cep);
-            await goto('address-info');
-        } catch (err) {
-            showDangerNotification('Não foi possível selecionar o endereço');
-        }
+        goto(`/address-info/${address.information.cep}`);
     }
 </script>
 

@@ -9,6 +9,12 @@ export default class AddressInfo {
 		public ddd: string = 'Desconhecido'
 	) {}
 
+	/**
+	 * Creates an AddressInfo object from a JSON object received from the ViaCEP API.
+	 *
+	 * @param {any} json - The JSON data to be converted to an AddressInfo object.
+	 * @returns {AddressInfo} The AddressInfo object generated from the JSON data.
+	 */
 	public static fromAPIJson(json: any): AddressInfo {
 		return new AddressInfo(
 			json.cep,
@@ -21,6 +27,12 @@ export default class AddressInfo {
 		);
 	}
 
+	/**
+	 * Creates an AddressInfo object from a JSON object received from the local storage.
+	 *
+	 * @param {any} json - The JSON data to be converted to an AddressInfo object.
+	 * @returns {AddressInfo} The AddressInfo object generated from the JSON data.
+	 */
 	public static fromLocalStorageJson(json: any): AddressInfo {
 		return new AddressInfo(
 			json.cep,
@@ -33,23 +45,16 @@ export default class AddressInfo {
 		);
 	}
 
-	public toObject() {
-		return {
-			CEP: this.cep,
-			Logradouro: this.logradouro,
-			Complemento: this.complemento,
-			Bairro: this.bairro,
-			Cidade: this.cidade,
-			Estado: this.estado,
-			DDD: this.ddd
-		};
-	}
-
-	public toString = (): string => {
+	/**
+	 * Returns a string representation of the address information.
+	 *
+	 * @returns {string} The CEP of the address.
+	 */
+	public toString(): string {
 		return `${this.logradouro}${
 			this.logradouro && (this.complemento || this.bairro) ? ',' : this.logradouro ? '.' : ''
 		} ${this.complemento ? this.complemento + ' - ' : ''} ${
 			this.bairro ? this.bairro + '.' : ''
 		} CEP: ${this.cep}. ${this.cidade}/${this.estado}`;
-	};
+	}
 }

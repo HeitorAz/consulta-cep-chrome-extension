@@ -1,7 +1,8 @@
 import Address from '$models/address';
-import { showDangerNotification, showWarningNotification } from '$providers/notifications';
+import { CustomError } from '$src/lib/models/customError';
+import { ToastType } from '$src/lib/models/toast';
 import { copyToClipboard } from '$src/lib/utils/clipboard';
-import { addresses, currentAddressCep, getSnapshot } from '$src/stores';
+import { addresses, getSnapshot } from '$src/stores';
 
 const API_URL = 'https://viacep.com.br/ws/';
 const API_RESPONSE_FORMAT = 'json';
@@ -9,29 +10,15 @@ const API_RESPONSE_FORMAT = 'json';
 /**
  * Fetches an address from the API or from the local storage if available.
  * @async
- * @param cep
- * @returns {((Address)|Promise<Address>)}
+ * @param cep - The CEP to be searched in the API or the local storage.
+ * @returns {(Promise<Address | undefined>)} The address found or undefined if not found.
  */
-export async function fetchCepInfo(
-	cep: string,
-	cepInput?: HTMLInputElement
-): Promise<Address | undefined> {
+export async function fetchAddressInfo(cep: string): Promise<Address | undefined> {
 	try {
-		currentAddressCep.set(undefined);
-		cepInput ? cepInput.setAttribute('disabled', 'disabled') : null;
-		let address = fetchFromHistory(cep) || (await fetchFromApi(cep));
-		currentAddressCep.set(address.information.cep);
-		return address;
+		return fetchFromHistory(cep) || (await fetchFromApi(cep));
 	} catch (err: any) {
-		console.error(err);
-		if (err.message === '400') {
-			showWarningNotification('CEP inválido');
-		} else {
-			showDangerNotification('Verifique sua conexão com a internet.');
-		}
-		throw new Error('CEP não encontrado');
+		throw err;
 	} finally {
-		cepInput ? cepInput.removeAttribute('disabled') : null;
 	}
 }
 
@@ -47,6 +34,7 @@ export function toggleFavorite(address: Address): void {
 /**
  * Copies a list of addresses to the clipboard as a JSON string.
  *
+ * @async
  * @param {Address[]} addresses - The list of addresses to be copied.
  */
 export async function copyListOfAddresses(addresses: Address[]): Promise<void> {
@@ -67,10 +55,20 @@ export async function copyListOfAddresses(addresses: Address[]): Promise<void> {
  * @returns {Promise<Address>} The Address object generated using the information provided by the API.
  */
 async function fetchFromApi(cep: string): Promise<Address> {
-	const response = await fetch(`${API_URL}${cep.replace(/\D/g, '')}/${API_RESPONSE_FORMAT}/`);
-	const data = await response.json();
-	if (data.erro) throw new Error('400');
-	let address = Address.fromAPIJson(data);
+	let addressDataJSON: any = null;
+	try {
+		const response = await fetch(`${API_URL}${cep.replace(/\D/g, '')}/${API_RESPONSE_FORMAT}/`);
+		addressDataJSON = await response.json();
+	} catch (err) {
+		throw new CustomError(
+			'Ocorreu um erro ao buscar o CEP',
+			500,
+			ToastType.Danger,
+			'Erro ao buscar CEP'
+		);
+	}
+	if (addressDataJSON.erro) throw new CustomError('CEP inválido', 400, ToastType.Warning);
+	let address = Address.fromAPIJson(addressDataJSON);
 	updateStores(address);
 	return address;
 }

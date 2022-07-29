@@ -1,30 +1,33 @@
 import { Toast, ToastType } from '$models/toast';
 import { toast } from '$src/stores';
 
-export function showDangerNotification(message: string, duration: number = 3000) {
-	showNotification(message, ToastType.Danger, duration);
-}
+type ToastOptions = {
+	type: ToastType;
+	duration: number;
+};
 
-export function showWarningNotification(message: string, duration: number = 3000) {
-	showNotification(message, ToastType.Warning, duration);
-}
-
-export function showSuccessNotification(message: string, duration: number = 3000) {
-	showNotification(message, ToastType.Success, duration);
-}
-
-export function showInfoNotification(message: string, duration: number = 3000) {
-	showNotification(message, ToastType.Info, duration);
-}
+const DEFAULT_OPTIONS: ToastOptions = {
+	type: ToastType.Info,
+	duration: 3000
+};
 
 let currentTimeout: any = null;
 
-function showNotification(message: string, type: ToastType, duration: number) {
+/**
+ * Shows a toast notification.
+ * @param {string} message - The message shown in the body of the toast.
+ * @param {ToastOptions} options - The options for the toast.
+ */
+export function showNotification(
+	message: string,
+	options: Partial<ToastOptions> = { type: ToastType.Info, duration: 3000 }
+): void {
+	const opt = Object.assign(DEFAULT_OPTIONS, options);
 	toast.set(undefined);
 	clearTimeout(currentTimeout);
-	toast.set(new Toast(message, type, duration));
+	toast.set(new Toast(message, opt.type, opt.duration));
 
 	currentTimeout = setTimeout(() => {
 		toast.set(undefined);
-	}, duration);
+	}, opt.duration);
 }
