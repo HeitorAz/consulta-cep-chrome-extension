@@ -8,6 +8,7 @@ import { CustomError } from "$src/lib/models/customError";
 import AddressDisplay from "$src/lib/widgets/address/AddressDisplay.svelte";
 import { fetchAddressInfo } from "$src/providers/addressService";
 import { showNotification } from "$src/providers/notifications";
+import { addresses } from "$src/stores";
 import { onMount } from "svelte";
 
     let address: Address | undefined = undefined;
@@ -21,7 +22,14 @@ import { onMount } from "svelte";
         const cep = $page.params.cep;
         if(cep) {
             try {
-                address = await fetchAddressInfo(cep);
+                let fetchedAddress = await fetchAddressInfo(cep);
+                addresses.subscribe((addresses) => {
+                        address = Object.values(addresses).find((address) => {
+                            if(fetchedAddress) {
+                                return address.addressInfo.CEP === fetchedAddress.addressInfo.CEP;
+                            }
+                        });
+                });
             } catch(err) {
                 goto(previousPage);
                 if(err instanceof CustomError) {

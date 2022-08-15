@@ -32,7 +32,7 @@ async function copyAllFavoriteAddresses() {
 					</span>
 				</button>
 			</div>
-			<AddressList title={'Favoritos'} addressList={shownAddresses}/>
+			<AddressList title={'Favoritos'} addresses={shownAddresses}/>
 		{:else}
 		<div class="w-full h-full flex flex-col justify-center items-center text-center ">
 			<span class="material-icons-round text-7xl text-secondary-200">

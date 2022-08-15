@@ -18,7 +18,6 @@ export async function fetchAddressInfo(cep: string): Promise<Address | undefined
 		return fetchFromHistory(cep) || (await fetchFromApi(cep));
 	} catch (err: any) {
 		throw err;
-	} finally {
 	}
 }
 

@@ -3,13 +3,13 @@
     import AddressListItem from "$src/lib/widgets/address/AddressListItem.svelte";
 
     export let title: string;
-    export let addressList: Address[] = [];
+    export let addresses: Address[] = [];
     export let showDate: boolean = false;
 </script>
 
 <h1 class="font-bold text-secondary-400">{title}</h1>
 <div class="divide-y">
-    {#each addressList as address}
+    {#each addresses as address}
         <AddressListItem address={address} {showDate}/>
     {/each}
 </div>

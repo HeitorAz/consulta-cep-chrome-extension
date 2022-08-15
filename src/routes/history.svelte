@@ -32,7 +32,7 @@
 					</span>
 				</button>
 			</div>
-            <AddressList title={'Histórico'} addressList={shownAddresses} showDate={true}/>
+            <AddressList title={'Histórico'} addresses={shownAddresses} showDate={true}/>
         {:else}
         <div class="w-full h-full flex flex-col justify-center items-center text-center ">
 			<span class="material-icons-round text-7xl text-secondary-200">
