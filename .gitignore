@@ -10,3 +10,5 @@ node_modules
 .pem
 env.exe.stackdump
 build.pem
+build.crx
+build.zip

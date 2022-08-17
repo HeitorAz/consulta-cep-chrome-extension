@@ -1,5 +1,5 @@
 
-		import { start } from "/app/immutable/start-682c0100.js";
+		import { start } from "/app/immutable/start-5ea90800.js";
 		start({
 			target: document.querySelector('[data-sveltekit-hydrate="8hi2hz"]').parentNode,
 			paths: {"base":"","assets":""},
