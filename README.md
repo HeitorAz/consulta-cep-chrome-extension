@@ -1,4 +1,4 @@
-![Logo](https://i.ibb.co/ZVfdWZF/banner.png)
+![Logo](media/banner.png)
 # Consulta CEP - Extensão para Chrome
 
 `Consulta CEP` é uma extensão para Chrome simples que permite a busca, 
@@ -7,7 +7,7 @@ armazenamento e a organização de seus endereços.
 
 ## Demo
 
-![App Demo](https://i.ibb.co/1MkTg1S/app-example.gif)
+![App Demo](media/app-example.gif)
 
 Desenvolvido para Chrome e compatível com Microsoft Edge, Opera e Brave.
 Uma Versão para Firefox estará disponível em breve.
@@ -17,10 +17,10 @@ Uma Versão para Firefox estará disponível em breve.
 
 Visite a página da extensão na loja oficial do seu navegador:
 
-Navegador | Link
---- | ---
-Google Chrome | [Consulta CEP - Chrome Web Store](https://chrome.google.com/webstore/detail/consulta-cep/nginojeoeijhlmboiccamcecmfncbgbe?hl=pt-br) |
-Firefox | *Em breve!* |
+| Navegador     | Link                                                                                                                                |
+| ------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| Google Chrome | [Consulta CEP - Chrome Web Store](https://chrome.google.com/webstore/detail/consulta-cep/nginojeoeijhlmboiccamcecmfncbgbe?hl=pt-br) |
+| Firefox       | *Em breve!*                                                                                                                         |
 
     
 ## Funcionalidades
